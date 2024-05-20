@@ -1,0 +1,7 @@
+component profanity_masker{
+    service mask_words{
+        [in] string text;
+        [out] string censored_text;
+        [out] int error_code;
+    }
+}

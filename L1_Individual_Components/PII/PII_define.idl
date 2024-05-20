@@ -1,0 +1,14 @@
+component PII{
+    service anonymize_text{
+        /**
+        * Masks information in the input_text.
+        *
+        * @param text The text to Anonymize.
+        * @param Anonymized_text input_text with the masked details
+        */
+
+        [in] string text;
+        [out] string Anonymized_text;
+        [out] int error_code;
+    };
+};

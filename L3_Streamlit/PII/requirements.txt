@@ -1,0 +1,9 @@
+presidio-analyzer[transformers]
+presidio-analyzer[stanza]
+presidio-anonymizer
+pandas
+python-dotenv
+torch
+flair
+openai
+azure-ai-textanalytics
