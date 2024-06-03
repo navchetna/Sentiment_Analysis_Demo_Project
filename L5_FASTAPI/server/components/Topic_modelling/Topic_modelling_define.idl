@@ -1,0 +1,13 @@
+component BERTopicModel{
+    service get_topic_info{
+        /**
+        * retreives topics from the dataset
+        *
+        */
+
+        [in] List[string] docs;
+        [out] DataFrame topic_info;
+        [out] int error_code;
+
+    };
+};
