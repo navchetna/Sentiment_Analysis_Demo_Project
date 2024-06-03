@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: frontend
+    build: ./
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./src:/app
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+  backend:
+    container_name: backend
+    build: ./server
+    ports:
+      - '3010:3010'
+    volumes:
+      - ./server:/app
+      - /app/__pycache__
+    depends_on:
+      - db
+
+
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=ui
+      - MYSQL_ROOT_PASSWORD=secret
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbs:/var/lib/mysql
+
+
+  prisma-studio:
+    links:
+      - db
+    depends_on:
+      - db
+    build:
+      context: ./prisma
+      dockerfile: Dockerfile
+    container_name: prisma-studio
+    restart: unless-stopped
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./prisma:/app/prisma
+
+volumes:
+  dbs:

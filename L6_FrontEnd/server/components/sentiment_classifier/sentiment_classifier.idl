@@ -1,0 +1,14 @@
+component TextClassifier{
+    service infer{
+        /**
+        * Performs sentiment analysis on the input text.
+        *
+        * @param input_text the text you want to analyse for sentiment.
+        * @param sentiment predicted sentiment label for the input text ("NEGATIVE" or "POSITIVE").
+        */
+
+        [in] string input_text;
+        [out] string sentiment;
+        [out] int error_code;
+    };
+};
