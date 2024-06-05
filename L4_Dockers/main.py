@@ -6,15 +6,15 @@ from sentiment_classifier.main import TextClassifier
 import time
 # Step 1: Use CSVProcessor to drop columns and save the processed file
 start_time = time.perf_counter()
-csv_file_path = "reviews.csv"
-processor = CSVProcessor(csv_file_path)
+# csv_file_path = "reviews.csv"
+# processor = CSVProcessor(csv_file_path)
 columns_to_drop = ['business_name', 'author_name', 'photo', 'rating_category']
-processor.drop_columns(columns_to_drop)
-# Assuming the save_to_csv method exists and saves the processed file
-processor.save_to_csv("processed_reviews.csv")
+# processor.drop_columns(columns_to_drop)
+# # Assuming the save_to_csv method exists and saves the processed file
+# processor.save_to_csv("processed_reviews.csv")
 # -----------------------------------------------------------------------------------------
 # Step 2: Read the processed file back into a DataFrame
-df = pd.read_csv("processed_reviews.csv")
+df = pd.read_csv("reviews.csv")
 
 # Continue with DataFrame manipulations...
 text_analyzer_service_model1 = TextAnalyzerService(model_choice="obi/deid_roberta_i2b2")
@@ -61,7 +61,7 @@ def classify_text(text):
         return classifier.infer(text)
 
     # Define the column number to apply the classification
-column_number = 3  # Change this to the column number where the text is located (0-based index)
+column_number = 0  # Change this to the column number where the text is located (0-based index)
 
     # Apply the text classification to the specified column
 
