@@ -3,6 +3,8 @@ services:
   frontend:
     container_name: frontend
     build: ./
+    expose:
+      - 13002
     ports:
       - "13002:13002"
     volumes:
@@ -16,6 +18,8 @@ services:
   backend:
     container_name: backend
     build: ./server
+    expose:
+      - 3010
     ports:
       - "3010:3010"
     volumes:

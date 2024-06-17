@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3010
 
-CMD ["uvicorn", "main:app","--port", "3010","--reload"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3010","--reload"]
