@@ -19,9 +19,9 @@ services:
     container_name: backend
     build: ./server
     expose:
-      - 3010
+      - 13001
     ports:
-      - "3010:3010"
+      - "13001:13001"
     volumes:
       - ./server:/app
       - /app/__pycache__
