@@ -16,6 +16,7 @@ const UploadComponent = () => {
     });
 
     try {
+      console.log("sending POST request to /upload");
       const response = await axios.post(
         `http://localhost:13001/upload`,
         formData,
@@ -34,20 +35,20 @@ const UploadComponent = () => {
 
   return (
     <div className="flex flex-row w-48 items-center justify-items-center">
-        <Upload
-          listType="picture-card"
-          fileList={fileList}
-          onChange={handleChange}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <div>
-            <PlusOutlined style={{ color: "white" }} />
-            <div style={{ marginTop: 8, color: "white" }}>Add files</div>
-          </div>
-        </Upload>
+      <Upload
+        listType="picture-card"
+        fileList={fileList}
+        onChange={handleChange}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div>
+          <PlusOutlined style={{ color: "white" }} />
+          <div style={{ marginTop: 8, color: "white" }}>Add files</div>
+        </div>
+      </Upload>
       <Button
         style={{ color: fileList.length === 0 ? "grey" : "black" }}
         onClick={handleUpload}
