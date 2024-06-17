@@ -1,4 +1,5 @@
 fastapi==0.110
+python-multipart
 uvicorn
 scikit-learn
 bertopic

@@ -8,4 +8,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ['uvicorn', 'app:main',"--port", "3010",'--reload']
+EXPOSE 3010
+
+CMD ["uvicorn", "main:app","--port", "3010","--reload"]

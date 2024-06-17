@@ -10,7 +10,7 @@ import pandas as pd
 app = FastAPI()
 
 # Allowing CORS Headers
-origins = ["http://localhost:3000", "*"]
+origins = ["http://localhost:3010", "*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
