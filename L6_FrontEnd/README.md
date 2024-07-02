@@ -48,8 +48,32 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li>
+          <a href="#prerequisites">Prerequisites</a>
+        </li>
+        <ul>
+        <li>
+          <a href="#prerequisites">WSL</a>
+        </li>
+        <li>
+          <a href="#prerequisites">nvm and Node.js</a>
+        </li>
+        <li>
+          <a href="#prerequisites">Python</a>
+        </li>
+        <li>
+          <a href="#prerequisites">Git</a>
+        </li>
+        </ul>
+        <li><a href="#cloning-the-project">Cloning the Project</a></li>
+        <li><a href="#running-the-project">Running the Project</a></li>
+        <ul>
+        <li><a href="#cloning-the-project">a. Running via Docker Compose (Recommended)</a></li>
+        <li><a href="#cloning-the-project">b. Running the backend</a></li>
+        <li><a href="#cloning-the-project">c. Running the frontend</a></li>
+        </ul>
+        </ul>
+      </ul>
       </ul>
     </li>
     <li>
@@ -106,13 +130,39 @@ Here are some steps to get started with this project
 
 ### Prerequisites
 
+1. Install WSL on Windows machine
+
+   - Open PowerShell or Windows Command Prompt in administrator mode by right-clicking and selecting "Run as administrator" and then enter
+     ```
+     wsl --install
+     ```
+   - Then restart your machine
+   - Open PowerShell again and enter
+     ```
+     wsl
+     ```
+     This will open wsl on your terminal. It is recommended that all your code must be written within wsl.
+
 1. Node.js 20.13.1+ (Long Term Support version) + npm (installed along with Node.js)
-2. Python 3.9+
-3. Git
+   - Install Node Version Manager (nvm)
+     ```bash
+     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+     ```
+   - Install Node.js (Long Term Support Version) using nvm
+     ```bash
+     nvm install --lts
+     ```
+   - Check Node.js version
+     ```
+     node -v
+     ```
+     Should display `v20.11.1` or greater
+1. Python 3.9+ (Installed by default in wsl)
+1. Git (Installed by default in wsl)
 
    NOTE: If you are new to Git, create an access token and use it when prompted for password
 
-### Installation
+### Cloning the Project
 
 1. Clone the repo
    ```bash
@@ -122,18 +172,69 @@ Here are some steps to get started with this project
    ```bash
    cd composable-ui
    ```
-3. Install NPM packages
+
+### Running the project
+
+#### a. Running via Docker Compose (Recommended)
+
+1. Build the image (Approx 5 min)
    ```bash
-   npm install
+   docker compose build
    ```
-   Installs all dependencies for the project like Ant Design Library, Icon packs, etc.
-4. Install python libraries packages
+2. Bring up the containers (Approx 5 min)
+   ```bash
+   docker compose up
+   ```
+
+By default
+
+- frontend is accessible at `http://localhost:3000`
+- backend is accessible at `http://localhost:3010`
+- SwaggerUI is accessible at `http://localhost:3010/docs`
+
+#### b. Running backend locally
+
+1. Navigate to `/server`
+   ```
+   cd server
+   ```
+2. Install python libraries packages
+
    ```bash
    pip install fastapi uvicorn
    ```
+
    Installs both FastAPI and Uvicorn
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+3. Bring up the server
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+- by default, backend is accessible at `http://localhost:3010` and SwaggerUI is accessible at `http://localhost:3010/docs`
+- `main` corresponds to the name of the file `main.py`
+
+- `app` corresponds to the name of the variable used to initialise FastAPI `app = FastAPI()`.
+
+- `--reload` is used to watch for changes in the `main.py` file, upon which the server automatically restarts, thus incorporating the new changes
+
+  <!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
+#### c. Running frontend locally
+
+1. in the root directory, i.e, `/composable-ui`, install required dependecies
+
+   ```bash
+   npm install
+   ```
+
+   Installs all dependencies for the project like Ant Design Library, Icon packs, etc.
+
+2. Run the project
+   ```
+   npm run dev
+   ```
+   By default, frontend is accessible at `http://localhost:3000`
 
 <!-- USAGE EXAMPLES -->
 
@@ -296,35 +397,6 @@ return (
 All the props for the child components of the layout can be managed inside the layout component.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## FastAPI Server
-
-For the `<TableBasic>` Component, we need to fetch the relevant data from the FastAPI endpoint.
-
-By default, this endpoint is at `http://localhost:3000/write-data` but this url and endpoint name can be changed in the `.env` file and `server/main.py` file respectively.
-
-The data is hard coded inside this endpoint, but can easily be loaded from a config file as well.
-NOTE: If you are editing the data, make sure you do not alter its format as that is essential for the table to be able to read the data
-
-### FastAPI server
-
-1. Firstly open a new terminal window and navigate inside the server folder (assuming you are in the root directory of composable-ui)
-
-   ```bash
-   cd server
-   ```
-
-2. Then run the following command on the terminal
-
-   ```bash
-   uvicorn main:app --reload
-   ```
-
-   `main` corresponds to the name of the file `main.py`
-
-   `app` corresponds to the name of the variable used to initialise FastAPI.
-
-   `--reload` is used to watch for changes in the `main.py` file, upon which the server automatically restarts, thus incorporating the new changes
 
 <!-- #### Sidebar Props
 
