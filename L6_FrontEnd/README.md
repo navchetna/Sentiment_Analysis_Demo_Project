@@ -166,7 +166,7 @@ Here are some steps to get started with this project
 
 1. Clone the repo
    ```bash
-   git clone https://github.com/navchetna/composable-ui.git
+   git clone https://github.com/navchetna/Sentiment_Analysis_Demo_Project.git
    ```
 2. Move into project directory
    ```bash
